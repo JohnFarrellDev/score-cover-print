@@ -10,14 +10,14 @@ export function SongForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const encodedSongName = encodeURIComponent(songName);
-    const encodedArtistName = encodeURIComponent(artistName);
-    const encodedScoreLink = encodeURIComponent(scoreLink);
-    const encodedSongLink = encodeURIComponent(songLink);
+    const params = new URLSearchParams({
+      songName: songName,
+      artistName: artistName,
+      scoreLink: scoreLink,
+      songLink: songLink,
+    });
 
-    navigate(
-      `/cover/${encodedSongName}/${encodedArtistName}/${encodedScoreLink}/${encodedSongLink}`
-    );
+    navigate(`/cover?${params.toString()}`);
   };
 
   return (

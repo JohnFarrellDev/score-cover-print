@@ -5,9 +5,5 @@ export default {
     extend: {},
   },
   plugins: [],
-  variants: {
-    extend: {
-      display: ["print"],
-    },
-  },
+  variants: {},
 };
