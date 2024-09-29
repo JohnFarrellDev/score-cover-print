@@ -51,7 +51,7 @@ export function CoverPage() {
         )}
 
         {(scoreLink || songLink) && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8">
             {scoreLink && (
               <div className="bg-gray-100 p-4 print:p-0 rounded-lg print:bg-white">
                 <p className="font-semibold text-lg mb-2">Score:</p>
