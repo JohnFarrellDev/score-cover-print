@@ -78,7 +78,7 @@ export function CoverPage() {
           </div>
         )}
 
-        <div className="mt-8 print:hidden grid grid-cols-3 gap-4 justify-between items-center">
+        <div className="mt-8 print:hidden grid grid-cols-1 md:grid-cols-3 gap-4 justify-between items-center">
           <Link
             to="/"
             className="flex-1 text-center text-blue-600 hover:underline"
