@@ -58,7 +58,7 @@ describe("SongForm", () => {
     );
 
     expect(mockNavigate).toBeCalledWith(
-      "/cover/Test%20Song/Test%20Artist/https%3A%2F%2Fexample.com%2Fscore/https%3A%2F%2Fexample.com%2Fsong"
+      "/cover?songName=Test+Song&artistName=Test+Artist&scoreLink=https%3A%2F%2Fexample.com%2Fscore&songLink=https%3A%2F%2Fexample.com%2Fsong"
     );
   });
 });

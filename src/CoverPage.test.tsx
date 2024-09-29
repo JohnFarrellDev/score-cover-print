@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { CoverPage } from "./CoverPage";
 import { describe, it, expect, vi } from "vitest";
@@ -8,25 +8,21 @@ vi.mock("qrcode.react", () => ({
 }));
 
 describe("CoverPage", () => {
-  it("renders correctly with all parameters", () => {
-    const params = {
-      songName: "Test%20Song",
-      artistName: "Test%20Artist",
-      scoreLink: "https%3A%2F%2Fexample.com%2Fscore",
-      songLink: "https%3A%2F%2Fexample.com%2Fsong",
-    };
+  const params = {
+    songName: "Test Song",
+    artistName: "Test Artist",
+    scoreLink: "https://example.com/score",
+    songLink: "https://example.com/song",
+  };
 
+  const pathWithParams = `/cover?${new URLSearchParams(params)}`;
+  const route = "/cover";
+
+  it("renders correctly with all parameters", () => {
     render(
-      <MemoryRouter
-        initialEntries={[
-          `/cover/${params.artistName}/${params.songName}/${params.scoreLink}/${params.songLink}`,
-        ]}
-      >
+      <MemoryRouter initialEntries={[pathWithParams]}>
         <Routes>
-          <Route
-            path="/cover/:artistName/:songName/:scoreLink/:songLink"
-            element={<CoverPage />}
-          />
+          <Route path={route} element={<CoverPage />} />
         </Routes>
       </MemoryRouter>
     );
@@ -40,9 +36,9 @@ describe("CoverPage", () => {
 
   it("renders correctly with missing parameters", () => {
     render(
-      <MemoryRouter initialEntries={["/cover"]}>
+      <MemoryRouter>
         <Routes>
-          <Route path="/cover" element={<CoverPage />} />
+          <Route path={route} element={<CoverPage />} />
         </Routes>
       </MemoryRouter>
     );
@@ -52,5 +48,63 @@ describe("CoverPage", () => {
     expect(screen.queryByText("Score:")).not.toBeInTheDocument();
     expect(screen.queryByText("Spotify:")).not.toBeInTheDocument();
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
+  });
+
+  it("handles share button click correctly when navigator.share is available", async () => {
+    const mockShare = vi.fn();
+    const mockClipboard = {
+      writeText: vi.fn().mockResolvedValue(undefined),
+    };
+
+    Object.assign(navigator, {
+      share: mockShare,
+      clipboard: mockClipboard,
+    });
+
+    render(
+      <MemoryRouter initialEntries={[pathWithParams]}>
+        <Routes>
+          <Route path={route} element={<CoverPage />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const shareButton = screen.getByText("Share");
+    fireEvent.click(shareButton);
+
+    const expectedUrl = window.location.href;
+
+    expect(mockShare).toHaveBeenCalledWith({
+      title: `${params.artistName} - ${params.songName}`,
+      text: `Check out this cover page for ${params.songName} by ${params.artistName}`,
+      url: expectedUrl,
+    });
+    expect(mockClipboard.writeText).not.toHaveBeenCalled();
+  });
+
+  it("handles share button click correctly when navigator.share is not available", async () => {
+    const mockClipboard = {
+      writeText: vi.fn().mockResolvedValue(undefined),
+    };
+
+    Object.assign(navigator, {
+      share: undefined,
+      clipboard: mockClipboard,
+    });
+
+    render(
+      <MemoryRouter initialEntries={[pathWithParams]}>
+        <Routes>
+          <Route path={route} element={<CoverPage />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const shareButton = screen.getByText("Share");
+    fireEvent.click(shareButton);
+
+    const expectedUrl = window.location.href;
+
+    expect(mockClipboard.writeText).toHaveBeenCalledWith(expectedUrl);
   });
 });
