@@ -1,0 +1,30 @@
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide the browser's default header and footer */
+  @page {
+    size: auto;
+    margin: 0mm;
+  }
+
+  /* Hide any other unwanted elements */
+  header,
+  footer,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Remove the title and URL from print */
+  title,
+  head {
+    display: none !important;
+  }
+}
