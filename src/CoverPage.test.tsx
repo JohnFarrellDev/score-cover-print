@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { CoverPage } from "./CoverPage";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 
 vi.mock("qrcode.react", () => ({
   QRCodeCanvas: () => <img src="qr-code.png" alt="QR Code" />,

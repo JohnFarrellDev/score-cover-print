@@ -1,50 +1,54 @@
-# React + TypeScript + Vite
+# Cover Page Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This React application generates cover pages for songs, including QR codes for easy access to scores and song links.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Generate cover pages with artist name, song title, and QR codes
+- QR codes for quick access to sheet music scores and song links (e.g., Spotify)
+- Responsive design for various screen sizes
+- Easy-to-use URL parameter system for generating cover pages
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- TypeScript
+- Vite
+- React Router
+- qrcode.react
+- Vitest for testing
 
-- Configure the top-level `parserOptions` property like this:
+## 🏗️ Project Structure
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- `src/CoverPage.tsx`: Main component for rendering the cover page
+- `src/CoverPage.test.tsx`: Unit tests for the CoverPage component
+
+## 🚦 Getting Started
+
+1. Clone the repository:
+
+   ```
+   git clone git@github.com:JohnFarrellDev/score-cover-print.git
+   ```
+
+2. Install dependencies:
+
+   ```
+   npm install
+   ```
+
+3. Run the development server:
+
+   ```
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## 🧪 Running Tests
+
+To run the unit tests:
+
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+npm run test
 ```
