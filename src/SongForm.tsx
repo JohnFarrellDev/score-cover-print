@@ -43,7 +43,6 @@ export function SongForm() {
               value={songName}
               onChange={(e) => setSongName(e.target.value)}
               className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-              required
             />
           </div>
           <div>
@@ -59,7 +58,6 @@ export function SongForm() {
               value={artistName}
               onChange={(e) => setArtistName(e.target.value)}
               className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-              required
             />
           </div>
           <div>
@@ -75,7 +73,6 @@ export function SongForm() {
               value={scoreLink}
               onChange={(e) => setScoreLink(e.target.value)}
               className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-              required
             />
           </div>
           <div>
@@ -91,7 +88,6 @@ export function SongForm() {
               value={songLink}
               onChange={(e) => setSongLink(e.target.value)}
               className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-              required
             />
           </div>
           <div className="print:hidden">
