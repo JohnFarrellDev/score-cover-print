@@ -55,10 +55,15 @@ export function CoverPage() {
             {scoreLink && (
               <div className="bg-gray-100 p-4 print:p-0 rounded-lg print:bg-white">
                 <p className="font-semibold text-lg mb-2">Score:</p>
-                <p className="mb-4 break-all">{scoreLink}</p>
+                <a
+                  href={scoreLink}
+                  className="mb-4 break-all block text-blue-500 hover:text-blue-600 print:text-black"
+                >
+                  {scoreLink}
+                </a>
                 <QRCodeCanvas
                   value={scoreLink}
-                  size={128}
+                  size={200}
                   className="mx-auto print:mx-0"
                 />
               </div>
@@ -67,10 +72,15 @@ export function CoverPage() {
             {songLink && (
               <div className="bg-gray-100 p-4 print:p-0 rounded-lg print:bg-white">
                 <p className="font-semibold text-lg mb-2">Spotify:</p>
-                <p className="mb-4 break-all">{songLink}</p>
+                <a
+                  href={songLink}
+                  className="mb-4 break-all block text-blue-500 hover:text-blue-600 print:text-black"
+                >
+                  {songLink}
+                </a>
                 <QRCodeCanvas
                   value={songLink}
-                  size={128}
+                  size={200}
                   className="mx-auto print:mx-0"
                 />
               </div>
